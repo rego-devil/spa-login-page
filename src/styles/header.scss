@@ -1,0 +1,24 @@
+.header {
+
+  ul {
+    padding: 0;
+    background: #E4EFD1;
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      padding: 1em;
+      display: block;
+      color: #74924C;
+      border-right: 1px solid #BAD78B;
+      background: rgba(186, 215, 139, .3);
+
+      &:hover {
+        background: #BAD78B;
+        text-decoration: none;
+      }
+    }
+  }
+}
