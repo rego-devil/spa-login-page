@@ -1,8 +1,12 @@
 .header {
 
+  display: flex;
+  justify-content: space-between;
+  background: #E4EFD1;
+
   ul {
     padding: 0;
-    background: #E4EFD1;
+    
 
     li {
       display: inline-block;

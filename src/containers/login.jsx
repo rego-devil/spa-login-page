@@ -1,22 +1,31 @@
 import React from 'react';
 import {loginData} from '../data/login';
+import {LoginForm} from '../components';
+import {glossary} from '../data/glossary';
+import { withRouter } from 'react-router'
 
-export class LoginPage extends React.Component {
+export class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       password: '',
-      login: ''
+      login: '',
+      error: false
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('event', event);
+
     if(this.state.login === loginData.username && this.state.password === loginData.password) {
-      console.log('Авторизация пройдена')
+      // this.setState({error: false});
+      window.localStorage.setItem('auth', true);
+      this.props.history.push('/profile');
     } else {
-      console.log('Авторизация не пройдена')
+      this.setState({error: true})
     }
   }
 
@@ -29,27 +38,12 @@ export class LoginPage extends React.Component {
   }
 
   render() {
-
+    console.log(this.props)
     return (
-      <div className="loginOuter">
-        <form method="post" action="" className="login" onSubmit={(e) => this.handleSubmit(e)}>
-          <p>
-            <label htmlFor="login">Логин:</label>
-            <input type="text" name="login" id="login" value={this.state.login} onChange={(event) => this.handleLogin(event)} />
-          </p>
-
-          <p>
-            <label htmlFor="password">Пароль:</label>
-            <input type="password" name="password" id="password" value={this.state.password} onChange={(event) => this.handlePassword(event)} />
-          </p>
-
-          <p className="login-submit">
-            <button type="submit" className="login-button">Войти</button>
-          </p>
-
-          <p className="forgot-password"><a href="index.html">Забыл пароль?</a></p>
-        </form>
-      </div>
+      <LoginForm {...this.state}
+          onHandleLogin={this.handleLogin} onHandlePassword={this.handlePassword} onHandleSubmit={this.handleSubmit}  />
     )
   }
 }
+
+export const LoginPage = withRouter(Login)
