@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import { ErrorBoundary } from './error-boundary';
 import {Routes} from './routes';
 import {store} from './redux/store';
-import { Layout } from './layout';
+import {Layout} from './layout';
 
 ReactDOM.render(
   <Provider store={store}>

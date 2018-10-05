@@ -2,7 +2,7 @@ import React from 'react';
 import {loginData} from '../data/login';
 import {LoginForm} from '../components';
 import {glossary} from '../data/glossary';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -38,7 +38,6 @@ export class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <LoginForm {...this.state}
           onHandleLogin={this.handleLogin} onHandlePassword={this.handlePassword} onHandleSubmit={this.handleSubmit}  />

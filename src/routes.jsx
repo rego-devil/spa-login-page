@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route} from "react-router-dom";
-import {MainPage, LoginPage, NewsPage, ProfilePage} from './containers';
+import {MainPage, LoginPage, NewsPage, ProfilePage, LogoutPage} from './containers';
 import {NotFound} from './components';
 
 export const Routes = () => (
@@ -9,6 +9,7 @@ export const Routes = () => (
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/news" component={NewsPage} />
       <Route exact path="/profile" component={ProfilePage} />
+      <Route exact path="/logout" component={LogoutPage} />
       <Route path="*" component={NotFound} />
     </Switch>
 )
