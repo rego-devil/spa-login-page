@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {Header} from './header';
 import {siteData} from '../redux/actions';
-import {loginData as data} from '../data/login';
+// import {loginData as data} from '../data/login';
 
 class Container extends React.Component {
   componentWillMount() {
@@ -23,13 +23,9 @@ class Container extends React.Component {
   
 }
 
-export const Layout = withRouter(
-  connect(
-    null,
-    (dispatch) => ({
+export const Layout = withRouter(connect(null,(dispatch) => ({
       setSiteData: (data) => dispatch(siteData(data)) 
-    })
-  )(Container)
+  }))(Container)
 )
 
 // export const Layout = Container;

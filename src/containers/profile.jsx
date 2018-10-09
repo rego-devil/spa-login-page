@@ -1,11 +1,9 @@
 import React from 'react';
-import {LoginPage} from './';
-export class ProfilePage extends React.Component {
+
+export class ProfilePage  extends React.Component {
   render() {
     return (
-        window.localStorage && window.localStorage.getItem('auth')  ? 
-          <div>Profile pageXX</div>
-        : <LoginPage /> 
+      <div>Profile page</div>
     )
   }
 }

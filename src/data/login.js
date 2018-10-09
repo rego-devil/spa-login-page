@@ -1,4 +1,4 @@
 export const loginData = {
   username: 'Admin',
-  password: '12345'
+  password: '12345',
 }

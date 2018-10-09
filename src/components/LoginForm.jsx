@@ -1,5 +1,6 @@
 import React from 'react';
 import {glossary} from '../data/glossary';
+import PropTypes from 'prop-types';
 
 export const  LoginForm = ({password, login, error, onHandleLogin, onHandlePassword, onHandleSubmit}) => {
     return (
@@ -12,7 +13,7 @@ export const  LoginForm = ({password, login, error, onHandleLogin, onHandlePassw
 
                 <p>
                     <label htmlFor="password">{glossary.password}:</label>
-                    <input type="password" name="password" id="password" value={password} onChange={(event) => onHandlePassword(event)} />
+                    <input type="password" name="password" id="password" value={password} onChange={onHandlePassword} />
                 </p>
 
                 <p className="login-submit">
@@ -25,4 +26,13 @@ export const  LoginForm = ({password, login, error, onHandleLogin, onHandlePassw
             </form>
       </div>
     )
+}
+
+LoginForm.propTypes = {
+    login: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onHandleLogin: PropTypes.func.isRequired,
+    onHandlePassword: PropTypes.func.isRequired,
+    onHandleSubmit: PropTypes.func.isRequired,
+    error: PropTypes.bool
 }

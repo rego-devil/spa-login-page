@@ -1,2 +1,2 @@
-export const LOGIN = 'LOGIN';
+export const SET_AUTHENTICATION = 'SET_AUTHENTICATION';
 export const SET_SITE_DATA = 'SET_SITE_DATA';
