@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import {login} from './reducer';
+import {session} from './reducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -9,7 +9,7 @@ const enhancer = composeEnhancers(
 );
 
 const reducers = combineReducers({
-  login,
+  session,
 });
 
 export const store = createStore(reducers, enhancer);

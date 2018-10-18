@@ -2,25 +2,25 @@ import React from 'react';
 import {glossary} from '../data/glossary';
 import PropTypes from 'prop-types';
 
-export const  LoginForm = ({password, login, error, onHandleLogin, onHandlePassword, onHandleSubmit}) => {
+export const  LoginForm = ({password, login, error, onHandleInput, onHandleSubmit}) => {
     return (
         <div className="loginOuter">
             <form method="post" action="" className="login" onSubmit={(e) => onHandleSubmit(e)}>
                 <p>
                     <label htmlFor="login">{glossary.login}:</label>
-                    <input type="text" name="login" id="login" value={login} onChange={onHandleLogin} />
+                    <input type="text" name="login" id="login" value={login} onChange={onHandleInput} data-field-name="login" />
                 </p>
 
                 <p>
                     <label htmlFor="password">{glossary.password}:</label>
-                    <input type="password" name="password" id="password" value={password} onChange={onHandlePassword} />
+                    <input type="password" name="password" id="password" value={password} onChange={onHandleInput} data-field-name="password" />
                 </p>
 
                 <p className="login-submit">
                     <button type="submit" className="login-button">{glossary.submit}</button>
                 </p>
                 {
-                    error ? <p className="login-error">{glossary.invalidAuth}</p> : null
+                    error ? <p className="login-error">{error}</p> : null
                 }
                 
             </form>
@@ -31,8 +31,7 @@ export const  LoginForm = ({password, login, error, onHandleLogin, onHandlePassw
 LoginForm.propTypes = {
     login: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
-    onHandleLogin: PropTypes.func.isRequired,
-    onHandlePassword: PropTypes.func.isRequired,
+    onHandleInput: PropTypes.func.isRequired,
     onHandleSubmit: PropTypes.func.isRequired,
     error: PropTypes.bool
 }
