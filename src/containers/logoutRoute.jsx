@@ -2,16 +2,16 @@ import React from 'react';
 import {Route, Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {setAuthentication} from '../redux/actions';
+import {logout} from '../redux/actions';
 
 
 class Container extends React.Component {
     componentWillMount() {
-        this.props.setAuthentication({isAuthenticated: false});
+        this.props.logout();
     }
 
     render() {
-        const {redirect, setAuthentication, ...rest} = this.props;
+        const {redirect, ...rest} = this.props;
         return <Redirect to={redirect} {...rest} /> 
     }
 }
@@ -19,12 +19,12 @@ class Container extends React.Component {
 
 export const LogoutRoute = connect(null,
     (dispatch) => ({
-        setAuthentication: (data) => dispatch(setAuthentication(data))
+        logout: (data) => dispatch(logout(data))
     })
 )(Container)
 
 Container.propTypes = {
     props: PropTypes.shape({
-        setAuthentication: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired
     }),
 }

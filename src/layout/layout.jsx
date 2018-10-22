@@ -13,7 +13,7 @@ class Container extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
+        <Header {...this.props} />
         <div className="wrapper">
           {this.props.children}
         </div>
@@ -23,7 +23,9 @@ class Container extends React.Component {
   
 }
 
-export const Layout = withRouter(connect(null,(dispatch) => ({
+export const Layout = withRouter(connect((state) => ({
+    isAuthenticated: state.session.isAuthenticated
+  }),(dispatch) => ({
       setSiteData: (data) => dispatch(siteData(data)) 
   }))(Container)
 )

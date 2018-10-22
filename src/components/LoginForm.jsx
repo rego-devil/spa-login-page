@@ -2,7 +2,7 @@ import React from 'react';
 import {glossary} from '../data/glossary';
 import PropTypes from 'prop-types';
 
-export const  LoginForm = ({password, login, error, onHandleInput, onHandleSubmit}) => {
+export const  LoginForm = ({password, login, errorMsg, onHandleInput, onHandleSubmit}) => {
     return (
         <div className="loginOuter">
             <form method="post" action="" className="login" onSubmit={(e) => onHandleSubmit(e)}>
@@ -20,7 +20,7 @@ export const  LoginForm = ({password, login, error, onHandleInput, onHandleSubmi
                     <button type="submit" className="login-button">{glossary.submit}</button>
                 </p>
                 {
-                    error ? <p className="login-error">{error}</p> : null
+                    errorMsg ? <p className="login-error">{errorMsg}</p> : null
                 }
                 
             </form>
@@ -33,5 +33,5 @@ LoginForm.propTypes = {
     password: PropTypes.string.isRequired,
     onHandleInput: PropTypes.func.isRequired,
     onHandleSubmit: PropTypes.func.isRequired,
-    error: PropTypes.bool
+    errorMsg: PropTypes.string
 }

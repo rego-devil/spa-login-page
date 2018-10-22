@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import {LoginForm} from '../components';
 import {setAuthentication} from '../redux/actions';
 
@@ -18,15 +18,6 @@ export class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {login, password} = this.state;
-    // console.log(this.props);
-    // if(this.state.login === loginData.username && this.state.password === loginData.password) {
-    //   this.setState({error: false});
-    //   this.props.setAuthentication({isAuthenticated: true});
-    //   this.props.history.push('/profile');
-    // } else {
-    //   this.setState({error: true})
-    // }
-
     this.props.setAuthentication({login, password})
   }
 
@@ -42,14 +33,23 @@ export class Login extends React.Component {
   }
 
   render() {
+    const {errorMsg, isAuthenticated, location} = this.props;
+    const {from} = location.state;
+
+    if(isAuthenticated) {
+      
+      return  <Redirect to={from} />
+    }
+    
     return (
-      <LoginForm {...this.state} onHandleInput={(e) => this.handleInput(e)} onHandleSubmit={this.handleSubmit}  />
+      <LoginForm {...this.state} errorMsg={errorMsg} onHandleInput={(e) => this.handleInput(e)} onHandleSubmit={this.handleSubmit}  />
     )
   }
 }
 
 export const LoginPage = withRouter(connect((state) => ({
-    errorMsg: state.session.errorMsg
+    errorMsg: state.session.errorMsg,
+    isAuthenticated: state.session.isAuthenticated
   }),
   (dispatch) => ({
     setAuthentication: (data) => dispatch(setAuthentication(data)),

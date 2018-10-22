@@ -5,19 +5,14 @@ export class MainPage extends React.Component {
 
     // function fn(value) {
     //   return new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //       resolve(value);
-    //     }, 1000);
+        
     //   });
     // }
 
-    // console.log('fn', fn().then())
+    // // console.log('fn', fn().then())
     // fn('AAA').then(result => {
     //       console.log("Fulfilled: " + result);
     //       return fn('BBB')
-    //     },
-    //     error => {
-    //       console.log("Rejected: " + error);
     //     }
     //   ).then((value) => {
     //     console.log('next then',value);
@@ -25,6 +20,10 @@ export class MainPage extends React.Component {
     //   }).then((value) => {
     //     console.log('next next then',value)
     //   });
+    const z = fetch('https://my-json-server.typicode.com/typicode/demo/posts').then((response) => {
+      console.log('v', response)
+      return response.json();
+    }).then(data => console.log(data))
   }
 
 

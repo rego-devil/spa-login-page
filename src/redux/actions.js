@@ -1,4 +1,4 @@
-import {SET_SITE_DATA, SUCCESS_AUTHENTICATION, FAILURE_AUTHENTICATION} from './constants';
+import {SET_SITE_DATA, SUCCESS_AUTHENTICATION, FAILURE_AUTHENTICATION, LOGOUT} from './constants';
 import {checkCredentials} from '../helpers/session';
 import {glossary} from '../data/glossary';
 
@@ -28,5 +28,9 @@ export const setAuthentication = (data) => (dispatch) => {
     }
         
 };
+
+export const logout = (data) => ({
+    type: LOGOUT     
+});
 
 
