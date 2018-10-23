@@ -1,9 +1,6 @@
-import React from 'react';
-import { Switch, Route} from "react-router-dom";
 import {MainPage, LoginPage, NewsPage, ProfilePage, NotFoundPage, AuthRoute, LogoutRoute} from './containers';
 
-
-const routes = [
+export const routes = [
   {
     isExact: true,
     path: '/',
@@ -39,26 +36,9 @@ const routes = [
   },
 ]
 
-export const Routes = () => (
-    <Switch>
-      {
-        routes.map( (route) => {
-          const Component = route.component;
-          return  <Route 
-                    key={route.path}
-                    exact={route.isExact}
-                    path={route.path}
-                    render={(props) => <Component {...props} redirect={route.redirect} innerComponent={route.innerComponent} />}
-                  />
-          
-        })
-      }
-    </Switch>
-)
-
-{/* <Route exact path="/" component={MainPage} />
-      <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/news" component={NewsPage} />
-      <AuthRoute exact path="/profile" component={ProfilePage} redirect='/login' />
-      <LogoutRoute exact path="/logout" redirect='/' />
-      <Route component={NotFoundPage} /> */}
+// <Route exact path="/" component={MainPage} />
+// <Route exact path="/login" component={LoginPage} />
+// <Route exact path="/news" component={NewsPage} />
+// <AuthRoute exact path="/profile" component={ProfilePage} redirect='/login' />
+// <LogoutRoute exact path="/logout" redirect='/' />
+// <Route component={NotFoundPage} /> 
