@@ -50,7 +50,6 @@ export class NewsPage extends React.Component {
   
 
   render() {
-    console.log(this.props);
     return (
       <React.Fragment>
         <div>NewsPage</div>

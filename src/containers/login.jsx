@@ -37,7 +37,6 @@ export class Login extends React.Component {
     const {from} = location.state;
 
     if(isAuthenticated) {
-      
       return  <Redirect to={from} />
     }
     

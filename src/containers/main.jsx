@@ -20,10 +20,10 @@ export class MainPage extends React.Component {
     //   }).then((value) => {
     //     console.log('next next then',value)
     //   });
-    const z = fetch('https://my-json-server.typicode.com/typicode/demo/posts').then((response) => {
-      console.log('v', response)
-      return response.json();
-    }).then(data => console.log(data))
+    // const z = fetch('https://my-json-server.typicode.com/typicode/demo/posts').then((response) => {
+    //   console.log('v', response)
+    //   return response.json();
+    // }).then(data => console.log(data))
   }
 
 

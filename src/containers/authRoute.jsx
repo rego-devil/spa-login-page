@@ -4,18 +4,17 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
-class Container extends React.Component {
-
-    render() {
-        const {isAuthenticated, component: Component, redirect, ...rest } = this.props;
-        console.log('isAuthenticated', isAuthenticated)
-        return (
-            <Route {...rest} render={(props) => {
-                    return isAuthenticated  ? <Component {...props} /> : <Redirect to={{ pathname: redirect, state: {from: props.location}}} />
-                }}
-            />
-        )
-    }
+const Container = ({isAuthenticated, component, redirect, innerComponent, ...rest }) => {
+    let DinamicComponent = component;
+    if(innerComponent) {
+        DinamicComponent = innerComponent
+    } 
+    return (
+        <Route {...rest} render={ (props) => {
+                return isAuthenticated  ? <DinamicComponent {...props} /> : <Redirect to={{ pathname: redirect, state: {from: props.location}}} />
+            }}
+        />
+    )
 }
 
 
