@@ -21,12 +21,6 @@ export class Login extends React.Component {
     this.props.setAuthentication({login, password})
   }
 
-  // handleLogin() {
-  //   return (event) => {
-  //     this.setState({login: event.target.value})
-  //   }
-  // }
-
   handleInput(event) {
     const fieldName = event.target.dataset.fieldName;
     this.setState({[fieldName]: event.target.value});

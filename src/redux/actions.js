@@ -1,6 +1,7 @@
 import {SET_SITE_DATA, SUCCESS_AUTHENTICATION, FAILURE_AUTHENTICATION, LOGOUT} from './constants';
-import {checkCredentials} from '../helpers/session';
+import {checkCredentials} from '../services';
 import {glossary} from '../data/glossary';
+import {chooseAttractiveMessage} from '../helpers/session';
 
 export const siteData = (data) => {
     return {
@@ -11,21 +12,32 @@ export const siteData = (data) => {
 
 export const setAuthentication = (data) => (dispatch) => {
        
-    if(checkCredentials(data)) {
+    checkCredentials(data).then((result) => {
+        console.log(result)
+        if(result.data.status === 'err') {
+            dispatch({
+                type: FAILURE_AUTHENTICATION,
+                payload: {
+                    errorMsg:  chooseAttractiveMessage(result.data.message)
+                }
+            });
+        }
+    })
+    // if(checkCredentials(data)) {
 
-        dispatch({
-            type: SUCCESS_AUTHENTICATION,
-            payload: data
-        });
+    //     dispatch({
+    //         type: SUCCESS_AUTHENTICATION,
+    //         payload: data
+    //     });
 
-    } else {
-        dispatch({
-            type: FAILURE_AUTHENTICATION,
-            payload: {
-                errorMsg: glossary.errorMsg
-            }
-        });
-    }
+    // } else {
+    //     dispatch({
+    //         type: FAILURE_AUTHENTICATION,
+    //         payload: {
+    //             errorMsg: glossary.errorMsg
+    //         }
+    //     });
+    // }
         
 };
 
