@@ -4,7 +4,9 @@ export const routes = [
   {
     isExact: true,
     path: '/',
-    component: MainPage
+    component: MainPage,
+    isNavBar: true,
+    navBarTitle: 'Home',
   },
   {
     isExact: true,
@@ -14,20 +16,26 @@ export const routes = [
   {
     isExact: true,
     path: '/news',
-    component: NewsPage
+    component: NewsPage,
+    isNavBar: true,
+    navBarTitle: 'News',
   },
   {
     isExact: true,
     path: '/profile',
     component: AuthRoute,
     innerComponent: ProfilePage,
-    redirect: '/login'
+    redirect: '/login',
+    isNavBar: true,
+    navBarTitle: 'Profile',
   },
   {
     isExact: true,
     path: '/logout',
     component: LogoutRoute,
-    redirect: '/'
+    redirect: '/',
+    isNavBar: true,
+    navBarTitle: 'Logout',
   },
   {
     isExact: false,

@@ -1,18 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {routes as links} from '../routes';
 
 export const Header = ({isAuthenticated}) => (
   <div className="header">
       <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/news">News</Link></li>
-        <li><Link to="/profile">Profile</Link></li>
+        {
+          links.map((item) => 
+            item.isNavBar && <li key={item.path}>
+               {
+                item.navBarTitle === 'Logout' ? (
+                  isAuthenticated ? <Link to={item.path}>{item.navBarTitle}</Link> : null 
+                ) : <Link to={item.path}>{item.navBarTitle}</Link>
+              }
+            </li>
+          )
+        }
       </ul>
-      {
-        isAuthenticated ? ( 
-          <ul><li><Link to="/logout">Logout</Link></li></ul> 
-        ) : null
-      }
       
   </div>
 )
