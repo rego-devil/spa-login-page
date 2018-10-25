@@ -1,8 +1,19 @@
 import React from 'react';
-
-export class NewsPage extends React.Component {
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {getNews} from '../redux/actions';
+export class Container extends React.Component {
   constructor() {
     super();
+  }
+
+  componentWillMount() {
+    this.props.getNews();
+  }
+
+  shouldComponentUpdate(nextProps) {
+    console.log('11');
+    return true;
   }
 
   // componentWillMount() {
@@ -50,10 +61,25 @@ export class NewsPage extends React.Component {
   
 
   render() {
+    const {news} = this.props;
+
+    if(!news) return <div>Wait...</div>;
+
     return (
-      <React.Fragment>
-        <div>NewsPage</div>
-      </React.Fragment>
+        news.map((item) => (
+          <div key={item.id} className="newsItem">
+            <h2>{item.title}</h2>
+            <div>{item.text}</div>
+          </div>
+        ))
     )
   }
 }
+
+export const NewsPage = withRouter(connect((state) => ({
+  news: state.news.data
+}),
+(dispatch) => ({
+  getNews: (data) => dispatch(getNews(data)),
+})
+)(Container))

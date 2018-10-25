@@ -2,7 +2,7 @@ import React from 'react';
 import {glossary} from '../data/glossary';
 import PropTypes from 'prop-types';
 
-export const  LoginForm = ({password, login, errorMsg, onHandleInput, onHandleSubmit}) => {
+export const  LoginForm = ({password, login, errorMsg, onHandleInput, onHandleSubmit, isFetching}) => {
     return (
         <div className="loginOuter">
             <form method="post" action="" className="login" onSubmit={(e) => onHandleSubmit(e)}>
@@ -17,7 +17,7 @@ export const  LoginForm = ({password, login, errorMsg, onHandleInput, onHandleSu
                 </p>
 
                 <p className="login-submit">
-                    <button type="submit" className="login-button">{glossary.submit}</button>
+                    <button type="submit" className="login-button" disabled={!login || !password || isFetching}>{glossary.submit}</button>
                 </p>
                 {
                     errorMsg ? <p className="login-error">{errorMsg}</p> : null

@@ -155,6 +155,11 @@ label {
   background: url("./img/arrow.png") 0 0 no-repeat;
 }
 
+.login-button:disabled:before {
+  background: #373737;
+  box-shadow: none;
+}
+
 
 .login-error {
   color: red;

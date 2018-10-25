@@ -18,7 +18,10 @@ export class Login extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {login, password} = this.state;
-    this.props.setAuthentication({login, password})
+    if(login && password) {
+      this.props.setAuthentication({email: login, password})
+    }
+    
   }
 
   handleInput(event) {
@@ -27,7 +30,7 @@ export class Login extends React.Component {
   }
 
   render() {
-    const {errorMsg, isAuthenticated, location} = this.props;
+    const {errorMsg, isAuthenticated, location, isFetching} = this.props;
     const {from} = location.state;
 
     if(isAuthenticated) {
@@ -35,14 +38,15 @@ export class Login extends React.Component {
     }
     
     return (
-      <LoginForm {...this.state} errorMsg={errorMsg} onHandleInput={(e) => this.handleInput(e)} onHandleSubmit={this.handleSubmit}  />
+      <LoginForm {...this.state} isFetching={isFetching} errorMsg={errorMsg} onHandleInput={(e) => this.handleInput(e)} onHandleSubmit={this.handleSubmit}  />
     )
   }
 }
 
 export const LoginPage = withRouter(connect((state) => ({
     errorMsg: state.session.errorMsg,
-    isAuthenticated: state.session.isAuthenticated
+    isAuthenticated: state.session.isAuthenticated,
+    isFetching: state.session.isFetching
   }),
   (dispatch) => ({
     setAuthentication: (data) => dispatch(setAuthentication(data)),
