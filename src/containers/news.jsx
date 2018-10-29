@@ -1,19 +1,35 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import {isEqual} from 'lodash';
 import { connect } from 'react-redux';
 import {getNews} from '../redux/actions';
 export class Container extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      news: []
+    }
+
+    props.getNews();
   }
 
-  componentWillMount() {
-    this.props.getNews();
-  }
+  // componentWillMount() {
+  //   this.props.getNews();
+  // }
 
   shouldComponentUpdate(nextProps) {
-    console.log('11');
     return true;
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(!isEqual(nextProps.news, prevState.news)) {
+      return {
+        news: nextProps.news
+      }
+    }
+    
+    return null;
   }
 
   // componentWillMount() {
@@ -62,7 +78,6 @@ export class Container extends React.Component {
 
   render() {
     const {news} = this.props;
-
     if(!news) return <div>Wait...</div>;
 
     return (
