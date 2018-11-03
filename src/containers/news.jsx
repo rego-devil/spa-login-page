@@ -18,12 +18,13 @@ export class Container extends React.Component {
   //   this.props.getNews();
   // }
 
-  shouldComponentUpdate(nextProps) {
-    return true;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return true;
+  // }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if(!isEqual(nextProps.news, prevState.news)) {
+      console.log(nextProps.news, prevState.news);
       return {
         news: nextProps.news
       }
@@ -77,8 +78,9 @@ export class Container extends React.Component {
   
 
   render() {
-    const {news} = this.props;
+    const {news} = this.state;
     if(!news) return <div>Wait...</div>;
+    console.log('render');
 
     return (
         news.map((item) => (
