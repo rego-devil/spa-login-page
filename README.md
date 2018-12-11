@@ -22,7 +22,7 @@ npm run start
 ```
 
 
-App will be opened in browser at http://localhost:8080/
+App will be opened in browser at http://localhost:9000/
 
 ### 4. Build app for production
 

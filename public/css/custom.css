@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline; }
+
+.wrapper {
+  max-width: 1000px;
+  margin: 100px auto 0 auto; }
+
+.loginTip {
+  font-size: 1rem;
+  text-align: right; }
+
+.newsItem {
+  padding: 20px 0; }
+
+.panel-danger {
+  margin-top: 20px; }
+
+
+/*# sourceMappingURL=custom.css.map*/
