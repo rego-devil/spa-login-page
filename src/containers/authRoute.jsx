@@ -4,27 +4,27 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 
-const Container = ({isAuthenticated, component, redirect, innerComponent, ...rest }) => {
-    let DinamicComponent = component;
-    if(innerComponent) {
-        DinamicComponent = innerComponent
-    } 
+const Container = ({isAuthenticated, innerComponent: Component, redirect, ...rest }) => {
     return (
-        <Route {...rest} render={ (props) => {
-                return isAuthenticated  ? <DinamicComponent {...props} /> : <Redirect to={{ pathname: redirect, state: {from: props.location}}} />
-            }}
-        />
-    )
+			<Route {...rest} render={(props) => {
+					return (
+						isAuthenticated  ? 
+							<Component {...props} />
+						: <Redirect to={{ pathname: redirect, state: {from: props.location}}}/>
+					)
+				}}
+			/>
+    );
 }
 
 
-export const AuthRoute = connect( (state) => ({
+export const AuthRoute = connect((state) => ({
     isAuthenticated: state.session.isAuthenticated
   })
 )(Container)
 
 Container.propTypes = {
     props: PropTypes.shape({
-        isAuthenticated: PropTypes.bool.isRequired
+      isAuthenticated: PropTypes.bool.isRequired
     }),
 }

@@ -1,5 +1,5 @@
 export const glossary = {
-    login: 'Login',
+    login: 'Email',
     password: 'Password',
     submit: 'Sing in',
     errorMsg: 'login or password is wrong'

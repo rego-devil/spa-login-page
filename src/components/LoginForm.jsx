@@ -1,37 +1,49 @@
 import React from 'react';
-import {glossary} from '../data/glossary';
+import { Button, Panel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import MyInput from './Input';
+import { glossary } from '../data/glossary';
+import { required, email, shortPassword } from '../helpers/validate';
 
-export const  LoginForm = ({password, login, errorMsg, onHandleInput, onHandleSubmit, isFetching}) => {
-    return (
-        <div className="loginOuter">
-            <form method="post" action="" className="login" onSubmit={(e) => onHandleSubmit(e)}>
-                <p>
-                    <label htmlFor="login">{glossary.login}:</label>
-                    <input type="text" name="login" id="login" value={login} onChange={onHandleInput} data-field-name="login" />
-                </p>
-
-                <p>
-                    <label htmlFor="password">{glossary.password}:</label>
-                    <input type="password" name="password" id="password" value={password} onChange={onHandleInput} data-field-name="password" />
-                </p>
-
-                <p className="login-submit">
-                    <button type="submit" className="login-button" disabled={!login || !password || isFetching}>{glossary.submit}</button>
-                </p>
-                {
-                    errorMsg ? <p className="login-error">{errorMsg}</p> : null
-                }
-                
-            </form>
-      </div>
-    )
-}
+const LoginForm = (props) => {
+  console.log('props', props);
+  const { error, handleSubmit, pristine, valid, submitting, asyncValidating } = props;
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field
+        name="email"
+        component={MyInput}
+        type="text"
+        placeholder="email"
+        label="Email"
+        validate={[required, email]}
+      />
+      <Field
+        name="password"
+        component={MyInput}
+        type="password"
+        placeholder="password"
+        label="Password"
+        validate={[required, shortPassword]}
+      />
+      <Button type="submit" bsStyle="info" disabled={pristine || !valid || submitting}>
+        {glossary.submit}
+      </Button>
+      {
+				error && <Panel bsStyle="danger">
+						<Panel.Heading>{error}</Panel.Heading>
+					</Panel>
+			}
+    </form>
+  );
+};
 
 LoginForm.propTypes = {
-    login: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    onHandleInput: PropTypes.func.isRequired,
-    onHandleSubmit: PropTypes.func.isRequired,
-    errorMsg: PropTypes.string
-}
+  handleSubmit: PropTypes.func.isRequired,
+  error: PropTypes.string
+};
+
+export default reduxForm({
+  form: 'login',
+})(LoginForm);

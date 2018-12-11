@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import {Header} from './header';
+import { Row, Col, Grid } from 'react-bootstrap';
 import {siteData, getNews} from '../redux/actions';
 // import {loginData as data} from '../data/login';
 

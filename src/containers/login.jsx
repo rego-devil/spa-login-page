@@ -1,54 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
-import {LoginForm} from '../components';
+import LoginForm from '../components/LoginForm';
 import {setAuthentication} from '../redux/actions';
 
-export class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      password: '',
-      login: '',
-      error: false
-    }
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const {login, password} = this.state;
-    if(login && password) {
-      this.props.setAuthentication({email: login, password})
-    }
-    
-  }
-
-  handleInput(event) {
-    const fieldName = event.target.dataset.fieldName;
-    this.setState({[fieldName]: event.target.value});
-  }
+export class Login extends React.PureComponent {
 
   render() {
-    const {errorMsg, isAuthenticated, location, isFetching} = this.props;
-    const {from} = location.state;
+    const { isAuthenticated, location }  = this.props;
 
     if(isAuthenticated) {
-      return  <Redirect to={from} />
+      return  <Redirect to={location.state.from} />;
     }
-    
+
     return (
-      <LoginForm {...this.state} isFetching={isFetching} errorMsg={errorMsg} onHandleInput={(e) => this.handleInput(e)} onHandleSubmit={this.handleSubmit}  />
-    )
+      <div>
+        <LoginForm  onSubmit={this.props.setAuthentication} />
+        <div className="loginTip">Login: max@test.com; Pass: 12345</div>
+      </div>
+    );
   }
 }
 
 export const LoginPage = withRouter(connect((state) => ({
-    errorMsg: state.session.errorMsg,
     isAuthenticated: state.session.isAuthenticated,
-    isFetching: state.session.isFetching
   }),
   (dispatch) => ({
     setAuthentication: (data) => dispatch(setAuthentication(data)),
   })
-)(Login))
+)(Login));

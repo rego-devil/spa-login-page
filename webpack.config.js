@@ -17,8 +17,8 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, 'public'),
-    filename: './script/[name].bundle.js',
-    // publicPath: '/',
+    	filename: './script/[name].bundle.js',
+    	// publicPath: '/',
 	},
 
 	module: {
@@ -109,9 +109,9 @@ module.exports = {
 		process.env.NODE_ENV === 'development' && new webpack.HotModuleReplacementPlugin(),
 
 		new HtmlWebpackPlugin({
-      title: 'Login-spa',
-      template: './index.html',
-    }),
+			title: 'Login-spa',
+			template: './index.html',
+    	}),
 
 		// new SpriteLoaderPlugin(),
 

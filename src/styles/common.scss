@@ -10,7 +10,11 @@ body {}
 
 .wrapper {
   max-width: 1000px;
-  margin: 0 auto;
-  border: 1px solid black;
-  margin-top: 20px;
+  margin: 100px auto 0 auto;
 }
+
+.loginTip {
+  font-size: 1rem;
+  text-align: right;
+}
+

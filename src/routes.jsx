@@ -42,7 +42,7 @@ export const routes = [
     path: '*',
     component: NotFoundPage,
   },
-]
+];
 
 // <Route exact path="/" component={MainPage} />
 // <Route exact path="/login" component={LoginPage} />
