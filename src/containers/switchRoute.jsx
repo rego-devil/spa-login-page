@@ -6,14 +6,15 @@ const SwitchRouteInner = (props) => (
   console.log('props', props) || 
   <Switch>
     {
+      console.log('props', props.match.url) ||
       routes.map((route) => {
         const Component = route.component;
-        console.log('props', props.match.url + route.path);
+        
         return (
           <Route 
-            key={props.match.url + route.path}
+            key={route.path}
             exact={route.isExact}
-            path={route.path}
+            path={props.match.url + route.path}
             render={(props) => <Component {...props} redirect={route.redirect} innerComponent={route.innerComponent} />}
           />
         );
