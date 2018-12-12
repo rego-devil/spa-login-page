@@ -7,7 +7,7 @@ const SwitchRouteInner = ({match}) => (
     {
       routes.map((route) => {
         const Component = route.component;
-        // console.log('props', match.url + route.path);
+        console.log('props', match.url + route.path);
         return (
           <Route 
             key={match.url + route.path}
