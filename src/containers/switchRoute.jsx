@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import routes from '../routes';
 
-const SwitchRouteInner = ({ match }) => (
+export const SwitchRoute = () => (
   <Switch>
     {
       routes.map((route) => {
@@ -19,6 +19,3 @@ const SwitchRouteInner = ({ match }) => (
     }
   </Switch>
 );
-
-const SwitchRoute = withRouter(SwitchRouteInner);
-export default SwitchRoute;
