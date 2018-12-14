@@ -1,21 +1,18 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { routes } from '../routes';
+import routes from '../routes';
 
-const SwitchRouteInner = (props) => (
-  console.log('props', props) || 
+const SwitchRouteInner = ({ match }) => (
   <Switch>
     {
-      console.log('props', props.match.url) ||
       routes.map((route) => {
         const Component = route.component;
-        
         return (
-          <Route 
+          <Route
             key={route.path}
             exact={route.isExact}
-            path={props.match.url + route.path}
-            render={(props) => <Component {...props} redirect={route.redirect} innerComponent={route.innerComponent} />}
+            path={route.path}
+            render={props => <Component {...props} redirect={route.redirect} innerComponent={route.innerComponent} />}
           />
         );
       })
@@ -23,4 +20,5 @@ const SwitchRouteInner = (props) => (
   </Switch>
 );
 
-export const  SwitchRoute = withRouter(SwitchRouteInner);
+const SwitchRoute = withRouter(SwitchRouteInner);
+export default SwitchRoute;

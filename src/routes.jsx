@@ -1,6 +1,8 @@
-import {MainPage, LoginPage, NewsPage, ProfilePage, NotFoundPage, AuthRoute, LogoutRoute} from './containers';
+import {
+  MainPage, LoginPage, NewsPage, ProfilePage, NotFoundPage, AuthRoute, LogoutRoute,
+} from './containers';
 
-export const routes = [
+const routes = [
   {
     isExact: true,
     path: '/',
@@ -11,7 +13,7 @@ export const routes = [
   {
     isExact: true,
     path: '/login',
-    component: LoginPage
+    component: LoginPage,
   },
   {
     isExact: true,
@@ -43,6 +45,8 @@ export const routes = [
     component: NotFoundPage,
   },
 ];
+
+export default routes;
 
 // <Route exact path="/" component={MainPage} />
 // <Route exact path="/login" component={LoginPage} />
