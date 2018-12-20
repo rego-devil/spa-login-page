@@ -3,34 +3,37 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { getUser } from '../redux/actions';
 
-export class Container  extends React.Component {
+export class Container extends React.Component {
   componentWillMount() {
-    console.log('111');
-    this.props.getUser({id: this.props.userId});
+    
+    this.props.getUser({ id: this.props.userId });
   }
 
   render() {
-    const {userInfo, errorMsg} = this.props;
-    console.log('props', this.props);
-    if(!userInfo && !errorMsg) return null;
-    if(errorMsg) return <div>{errorMsg}</div>;
+    const { userInfo, errorMsg } = this.props;
+    if (!userInfo && !errorMsg) return null;
+    if (errorMsg) return <div>{errorMsg}</div>;
 
-    if(userInfo) {
-      const {languages, social, city} = userInfo;
+    if (userInfo) {
+      const { languages, social, city } = userInfo;
       return (
         <React.Fragment>
-          <div>City: {city}</div>
+          <div>
+            City:
+            {' '}
+            {city}
+          </div>
           <div>languages: </div>
           <ul>
-          {
-            languages && languages.map((item) => <li key={item}>{item}</li>)
-          }
+            {
+              languages && languages.map(item => <li key={item}>{item}</li>)
+            }
           </ul>
           <div>socials: </div>
           <ul>
-          {
-            social && social.map((item) => <li key={item.link}>{item.label}</li>)
-          }
+            {
+              social && social.map(item => <li key={item.link}>{item.label}</li>)
+            }
           </ul>
         </React.Fragment>
       );
@@ -38,12 +41,11 @@ export class Container  extends React.Component {
   }
 }
 
-export const ProfilePage = withRouter(connect((state) => ({
-    userId: state.session.id,
-    userInfo: state.session.userInfo,
-    errorMsg: state.session.errorMsg
-  }),
-  (dispatch) => ({
-    getUser: (data) => dispatch(getUser(data)),
-  })
-)(Container));
+export const ProfilePage = withRouter(connect(state => ({
+  userId: state.session.id,
+  userInfo: state.session.userInfo,
+  errorMsg: state.session.errorMsg,
+}),
+dispatch => ({
+  getUser: data => dispatch(getUser(data)),
+}))(Container));

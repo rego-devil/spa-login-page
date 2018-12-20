@@ -1,31 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import LoginForm from '../components/LoginForm';
-import {setAuthentication} from '../redux/actions';
+import { setAuthentication } from '../redux/actions';
 
-export class Login extends React.PureComponent {
-
+class Login extends React.PureComponent {
   render() {
-    const { isAuthenticated, location }  = this.props;
+    const { isAuthenticated, location, setAuthentication } = this.props;
 
-    if(isAuthenticated) {
-      return  <Redirect to={location.state.from} />;
+    if (isAuthenticated) {
+      return <Redirect to={location.state.from} />;
     }
 
     return (
       <div>
-        <LoginForm  onSubmit={this.props.setAuthentication} />
+        <LoginForm onSubmit={setAuthentication} />
         <div className="loginTip">Login: max@test.com; Pass: 12345</div>
       </div>
     );
   }
 }
 
-export const LoginPage = withRouter(connect((state) => ({
-    isAuthenticated: state.session.isAuthenticated,
-  }),
-  (dispatch) => ({
-    setAuthentication: (data) => dispatch(setAuthentication(data)),
-  })
-)(Login));
+Login.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  location: PropTypes.object,
+  setAuthentication: PropTypes.func,
+};
+
+
+export const LoginPage = withRouter(connect(state => ({
+  isAuthenticated: state.session.isAuthenticated,
+}),
+dispatch => ({
+  setAuthentication: data => dispatch(setAuthentication(data)),
+}))(Login));

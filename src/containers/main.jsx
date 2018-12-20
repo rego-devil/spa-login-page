@@ -5,7 +5,6 @@ export class MainPage extends React.Component {
 
     // function fn(value) {
     //   return new Promise((resolve, reject) => {
-        
     //   });
     // }
 
@@ -30,6 +29,6 @@ export class MainPage extends React.Component {
   render() {
     return (
       <div>MainPage</div>
-    )
+    );
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import routes from '../routes';
 
-export const SwitchRoute = () => (
+const SwitchRoute = () => (
   <Switch>
     {
       routes.map((route) => {
@@ -12,10 +12,18 @@ export const SwitchRoute = () => (
             key={route.path}
             exact={route.isExact}
             path={route.path}
-            render={props => <Component {...props} redirect={route.redirect} innerComponent={route.innerComponent} />}
+            render={props => (
+              <Component
+                {...props}
+                redirect={route.redirect}
+                innerComponent={route.innerComponent}
+              />
+            )}
           />
         );
       })
     }
   </Switch>
 );
+
+export default SwitchRoute;

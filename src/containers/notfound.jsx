@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class NotFoundPage extends React.Component {
-  render() {
-    return (
-      <div className="noFound">404<br />Page not found</div>
-    )
-  }
-}
+export const NotFoundPage = () => (
+  <div className="noFound">
+    404
+    <br />
+    Page not found
+  </div>
+);
